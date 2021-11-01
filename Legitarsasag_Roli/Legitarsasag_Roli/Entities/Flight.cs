@@ -7,6 +7,7 @@ namespace Legitarsasag_Roli.Entities
 {
     public class Flight
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string CityFrom { get; set; }
         public string CityTo { get; set; }
