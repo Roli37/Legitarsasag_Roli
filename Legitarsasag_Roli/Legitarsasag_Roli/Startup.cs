@@ -1,3 +1,6 @@
+using Legitarsasag_Roli.DbContexts;
+using Legitarsasag_Roli.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +26,12 @@ namespace Legitarsasag_Roli
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<ILegitarsasagRepository, LegitarsasagRepository>();
+            services.AddDbContext<LegitarsasagContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
