@@ -18,14 +18,14 @@ namespace Legitarsasag_Roli.DbContexts
         public DbSet<Flight> Flights { get; set; }
         protected override void OnModelCreating (ModelBuilder modelBuilder)
         {
+            int a = 1;
+            int b = 1;
             foreach (string sor in File.ReadAllLines("input_flight.txt"))
             {
-                int n = 0;
-                n += 1;
                 string[] s = sor.Split(';');
                 modelBuilder.Entity<Flight>().HasData(new Flight
                 {
-                    Id = n,
+                    Id = a,
                     Airline = s[0],
                     CityFrom = s[1],
                     CityTo = s[2],
@@ -34,23 +34,24 @@ namespace Legitarsasag_Roli.DbContexts
                 });
                 modelBuilder.Entity<Airline>().HasData(new Airline
                 {
-                    Id = n,
+                    Id = a,
                     Name = s[0]
                 });
+                a++;
             }
             foreach (string sor in File.ReadAllLines("input_city.txt"))
             {
-                int n = 0;
-                n += 1;
                 string[] s = sor.Split(';');
                 modelBuilder.Entity<City>().HasData(new City
                 {
-                    Id = n,
+                    Id = b,
                     Name = s[0],
                     Population = int.Parse(s[1])
                 });
-                base.OnModelCreating(modelBuilder);
+                b++;
             }
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
